@@ -1,0 +1,42 @@
+<h1>Download Instagram Video</h1>
+<form method="post" id="download-form">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="file" id="location-picker" webkitdirectory directory style="display: none;" onchange="updateLocation()" />
+    <button type="button" onclick="document.getElementById('location-picker').click();">Select Download Location</button>
+    <button type="submit" onclick="startDownload()">Download</button>
+</form>
+<div id="progress-container" style="display: none;">
+    <progress id="progress-bar" value="0" max="100"></progress>
+    <p id="progress-text">0%</p>
+</div>
+
+<script>
+    function updateLocation() {
+        const input = document.getElementById('location-picker');
+        const path = input.files[0].webkitRelativePath.split('/')[0];
+        document.getElementById('id_location').value = path;
+    }
+
+    function startDownload() {
+        document.getElementById('progress-container').style.display = 'block';
+        const progressBar = document.getElementById('progress-bar');
+        const progressText = document.getElementById('progress-text');
+        const csrfToken = getCookie('csrftoken');
+
+        const interval = setInterval(async () => {
+            const response = await fetch('/progress/', {
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                },
+            });
+            const data = await response.json();
+            progressBar.value = data.progress;
+            progressText.innerText = `${data.progress}%`;
+
+            if (data.progress >= 100) {
+                clearInterval(interval);
+            }
+        }, 1000);
+    }
+</script>
