@@ -1,3 +1,44 @@
+<div style="text-align: center; justify-content: center; align-items: center; padding-top: 30vh;">
 <h1>Video Downloader</h1>
-<a href="{% url 'youtube' %}">Download YouTube Video</a>
-<a href="{% url 'instagram' %}">Download Instagram Video</a>
+<a href="{% url 'youtube' %}"><button class="youtube" >Download YouTube Video</button></a>
+<a href="{% url 'instagram' %}"><button class="insta" > Instagram Video</button></a>
+<p style="font-weight: bold; ">Created By: Abubakar Afzal</p>
+<div style="font-weight: bold; cursor: pointer; color: skyblue; ">Contact: +923144077251</div>
+</div>
+<style>
+    .insta{
+        background-color: rgb(255, 0, 132); border-radius: 2rem; padding: 10px 20px; margin: 10px 10px; color: white; font-weight: bold; border: none; outline: none; cursor: pointer;
+    }
+    .insta:hover{
+        background-color: rgba(255, 0, 212, 0.699) ;
+        transform: scale(1.12);
+        transition-duration: 2s;
+    }
+    .youtube{
+        background-color: rgb(194, 10, 10); border-radius: 2rem; padding: 10px 20px; margin: 10px 10px; color: white; font-weight: bold; border: none; outline: none; cursor: pointer;
+    }
+    .youtube:hover{
+        background-color: rgba(194, 10, 10, 0.713);
+        transform: scale(1.12);
+        transition-duration: 2s;
+    }
+    @media (orientation: portrait) {
+    body {
+        font-size: 50px; /* Adjust the value as needed */
+    }
+    button{
+        font-size: 60px;
+       
+    }
+}
+
+    @media (orientation: landscape) {
+    body {
+        font-size: 30px; /* Adjust the value as needed */
+    }
+    button{
+        font-size: 15px;
+       
+    }
+}
+</style>

@@ -1,16 +1,63 @@
+<div style="text-align: center; justify-content: center; align-items: center; padding-top: 30vh;">
 <h1>Download Instagram Video</h1>
 <form method="post" id="download-form">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="file" id="location-picker" webkitdirectory directory style="display: none;" onchange="updateLocation()" />
-    <button type="button" onclick="document.getElementById('location-picker').click();">Select Download Location</button>
-    <button type="submit" onclick="startDownload()">Download</button>
+    <button type="button" class="location" onclick="document.getElementById('location-picker').click();">Select Download Location</button>
+    <button type="submit" class="download" onclick="startDownload()">Download</button>
 </form>
 <div id="progress-container" style="display: none;">
     <progress id="progress-bar" value="0" max="100"></progress>
     <p id="progress-text">0%</p>
 </div>
+</div>
+<style>
+    .location{
+        background-color: rgb(255, 247, 0); border-radius: 2rem; padding: 10px 20px; margin: 10px 10px; color: white; font-weight: bold; border: none; outline: none; cursor: pointer;
+    }
+    .location:hover{
+        background-color: rgba(255, 247, 0, 0.629);         transform: scale(1.12);
+        transition-duration: 2s;
+    }
+    .download{
+        background-color: rgb(34, 255, 0); border-radius: 2rem; padding: 10px 20px; margin: 10px 10px; color: white; font-weight: bold; border: none; outline: none; cursor: pointer;
+    }
+    .download:hover{
+        background-color: rgba(34, 255, 0, 0.607);
+               transform: scale(1.12);
+        transition-duration: 2s;
+    }
+    input{
+        margin: 10px 10px;
+        padding: 10px 10px; 
+        border-radius: 2rem;
 
+    }
+    @media (orientation: portrait) {
+    body {
+        font-size: 50px; /* Adjust the value as needed */
+    }
+    button{
+        font-size: 60px;
+       
+    } input{
+        height: 4rem;
+        width: 25rem;
+        margin: 5rem 1rem;
+    }
+}
+
+    @media (orientation: landscape) {
+    body {
+        font-size: 20px; /* Adjust the value as needed */
+    }
+    button{
+        font-size: 15px;
+       
+    }
+}
+</style>
 <script>
     function updateLocation() {
         const input = document.getElementById('location-picker');
